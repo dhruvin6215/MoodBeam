@@ -1,5 +1,8 @@
-// Define the payload
+
 const data = { value: 123 };   // Integer Payload
+
+//*****************************************************************//
+
 
 // Use fetch to send the POST request
 fetch('http://172.20.10.12/data', {     // IP address of ESP32
