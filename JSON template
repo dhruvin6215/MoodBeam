@@ -1,0 +1,18 @@
+// Define the payload
+const data = { value: 123 };   // Integer Payload
+
+// Use fetch to send the POST request
+fetch('http://172.20.10.12/data', {     // IP address of ESP32
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data), // convert the JSON object to a string
+})
+.then(response => response.text())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
