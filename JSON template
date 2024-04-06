@@ -10,7 +10,7 @@ fetch('http://172.20.10.12/data', {     // IP address of ESP32
   headers: {
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify(data), // convert the JSON object to a string
+  body: JSON.stringify({ value: 123 }), // convert the JSON object to a string
 })
 .then(response => response.text())
 .then(data => {
