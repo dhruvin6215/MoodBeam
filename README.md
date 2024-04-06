@@ -1,1 +1,5 @@
 # MoodBeam
+
+## How script works
+
+#### 
