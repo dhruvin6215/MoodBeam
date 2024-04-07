@@ -3,30 +3,32 @@ import json
 import time
 
 
-
-
-CLIENT_ID = "oEAmwUXePmj8mbP5pL9d5g"
-SECRET_KEY = "R6SKfSsWoB20q0GsRkww15B-01Xvpw"
-NUM_POSTS = 3
-
-auth = requests.auth.HTTPBasicAuth(CLIENT_ID, SECRET_KEY)
-
-data = {
-    'grant_type': 'password',
-    'username': 'k_areem',
-    'password': 'ilovekittens'
-}
-
-headers = {'User-Agent': 'windows:sf_script:v0.0.1 (by /u/k_areem)'}
-
-response = requests.post('https://www.reddit.com/api/v1/access_token', auth=auth, data=data, headers=headers)
-
-TOKEN = response.json()['access_token']
-
-# update headers
-headers = {'User-Agent': 'windows:sf_script:v0.0.1 (by /u/k_areem)', 'Authorization': f'bearer {TOKEN}'}
-
+# for i in range(10):
 while True:
+
+    CLIENT_ID = "oEAmwUXePmj8mbP5pL9d5g"
+    SECRET_KEY = "R6SKfSsWoB20q0GsRkww15B-01Xvpw"
+    NUM_POSTS = 1
+
+    loop = 1
+
+    auth = requests.auth.HTTPBasicAuth(CLIENT_ID, SECRET_KEY)
+
+    data = {
+        'grant_type': 'password',
+        'username': 'k_areem',
+        'password': 'ilovekittens'
+    }
+
+    headers = {'User-Agent': 'windows:sf_script:v0.0.1 (by /u/k_areem)'}
+
+    response = requests.post('https://www.reddit.com/api/v1/access_token', auth=auth, data=data, headers=headers)
+
+    TOKEN = response.json()['access_token']
+
+    # update headers
+    headers = {'User-Agent': 'windows:sf_script:v0.0.1 (by /u/k_areem)', 'Authorization': f'bearer {TOKEN}'}
+
     sf_response = requests.get('https://oauth.reddit.com/r/sanfrancisco/new', headers=headers)
     sf_new_posts = [] # each post is a [title, content]
     for post in sf_response.json()['data']['children'][:NUM_POSTS]:
@@ -114,9 +116,12 @@ while True:
     # Replace with the integer value you want to send
     data = {'value': sf_average}
 
+    print("loop count:", loop, "\n")
+    loop += 1
+
     # Send a POST request with JSON payload
     response = requests.post(url, json=data)
 
     print(response.text)  # Output the response from the ESP32
 
-    time.sleep(5)
+    # time.sleep(2)
