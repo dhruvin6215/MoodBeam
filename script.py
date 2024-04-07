@@ -1,12 +1,9 @@
 import requests
 import json
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
 
-CLIENT_ID = os.getenv('CLIENT_ID')
-SECRET_KEY = os.getenv('SECRET_KEY')
+CLIENT_ID = "oEAmwUXePmj8mbP5pL9d5g"
+SECRET_KEY = "R6SKfSsWoB20q0GsRkww15B-01Xvpw"
 NUM_POSTS = 3
 
 auth = requests.auth.HTTPBasicAuth(CLIENT_ID, SECRET_KEY)
