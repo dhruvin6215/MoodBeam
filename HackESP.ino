@@ -30,8 +30,6 @@ void setup() {
 
 void loop() {
   server.handleClient(); // Handle client requests
-  //Serial.print("A");    // Send 'A' to the Arduino
-  Serial.print(value);    // Send 'A' to the Arduino
-
+  Serial.print(value);    // Send the value to the Arduino
   delay(5000);          // Wait for 5 seconds
 }
