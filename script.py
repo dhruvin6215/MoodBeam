@@ -3,12 +3,11 @@ import json
 import time
 
 newest = None
+loop = 1
 while True:
     CLIENT_ID = "oEAmwUXePmj8mbP5pL9d5g"
     SECRET_KEY = "R6SKfSsWoB20q0GsRkww15B-01Xvpw"
     NUM_POSTS = 1
-
-    loop = 1
 
     auth = requests.auth.HTTPBasicAuth(CLIENT_ID, SECRET_KEY)
 
@@ -68,7 +67,6 @@ while True:
     r = (sf_total_score/NUM_POSTS) % 1
     if r >= 0.5:
         sf_average += 1
-
 
     if newest == None:
         newest = sf_new_posts
