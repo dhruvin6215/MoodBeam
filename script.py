@@ -1,6 +1,10 @@
 import requests
 import json
 
+import serial
+import time
+
+
 
 CLIENT_ID = "oEAmwUXePmj8mbP5pL9d5g"
 SECRET_KEY = "R6SKfSsWoB20q0GsRkww15B-01Xvpw"
@@ -97,3 +101,11 @@ for post in sfsu_new_posts:
 
 sfsu_average = sfsu_total_score/NUM_POSTS
 print(f'sfsu_average: {sfsu_average}')
+
+
+# connect to arduino
+
+ser = serial.Serial('/dev/ttyUSB0', 115200) 
+time.sleep(2)
+ser.write(bytes(str(sfsu_average) + '\n', 'utf-8'))
+ser.close()

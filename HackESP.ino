@@ -32,4 +32,18 @@ void loop() {
   server.handleClient(); // Handle client requests
   Serial.print(value);    // Send the value to the Arduino
   delay(5000);          // Wait for 5 seconds
+
+  // receiving from .py script
+
+  if (Serial.available() > 0) {
+    // Read the incoming number
+    int sfsu_score = Serial.parseInt();
+
+    // Print the received number
+    Serial.print("Received sfsu score: ");
+    Serial.println(sfsu_score);
+  }
+
+
+
 }
