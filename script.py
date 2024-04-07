@@ -1,8 +1,7 @@
 import requests
 import json
 
-import serial
-import time
+import requests
 
 
 
@@ -99,13 +98,23 @@ for post in sfsu_new_posts:
     score = int(response.json()['choices'][0]['message']['content'][0])
     sfsu_total_score += score
 
-sfsu_average = sfsu_total_score/NUM_POSTS
+sfsu_average = int(sfsu_total_score/NUM_POSTS)
+r = (sfsu_total_score/NUM_POSTS) % 1
+if r >= 0.5:
+    sfsu_average += 1
 print(f'sfsu_average: {sfsu_average}')
 
 
 # connect to arduino
 
-ser = serial.Serial('/dev/ttyUSB0', 115200) 
-time.sleep(2)
-ser.write(bytes(str(sfsu_average) + '\n', 'utf-8'))
-ser.close()
+# Replace with your ESP32's IP address and endpoint
+url = 'http://172.20.10.12/data'
+
+# Replace with the integer value you want to send
+data = {'value': sfsu_average}
+# data = {'value': 1}
+
+# Send a POST request with JSON payload
+response = requests.post(url, json=data)
+
+print(response.text)  # Output the response from the ESP32
